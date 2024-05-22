@@ -1,7 +1,7 @@
 // /main.js
-import { TextBlock } from './components/text-block.js';
-import { VideoBlock } from './components/video-block.js';
-import { SwapBlock } from './components/swap-block.js';
+import { TextBlock } from './my-web-components/components/text-block.js';
+import { VideoBlock } from './my-web-components/components/video-block.js';
+import { SwapBlock } from './my-web-components/components/swap-block.js';
 
 if (!customElements.get('text-block')) {
   customElements.define('text-block', TextBlock);
