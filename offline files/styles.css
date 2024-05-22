@@ -12,12 +12,25 @@ body {
     color: #333;
   }
   
+  /* Controls for adding rows and columns */
+  .controls {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .controls button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
   /* CSS Grid setup */
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 0;
-    padding: 20px;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    border: 1px dotted #ccc;
   }
   
   .grid-item {
@@ -26,39 +39,15 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   /* Minimal styling for web components */
   text-block, video-block, swap-block, mc-question {
-    display: block;
-  }
-  
-  video-block video {
     width: 100%;
-    height: auto;
-  }
-  
-  /* General button styling for swap-block */
-  swap-block button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  swap-block button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Content styling for swap-block */
-  swap-block .content {
-    padding: 10px;
-    border-top: 1px solid #ddd;
-    background-color: #f9f9f9;
+    height: 100%;
   }
   

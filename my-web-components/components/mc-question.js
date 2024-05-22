@@ -21,7 +21,6 @@ export class McQuestion extends HTMLElement {
   
     render() {
       const { question, options, selectedAnswer, correctAnswer } = this.state;
-  
       const optionsHtml = options.map((option, index) => {
         const isSelected = selectedAnswer === index ? 'selected' : '';
         const isCorrect = selectedAnswer === index && index === correctAnswer ? 'correct' : '';
@@ -31,6 +30,11 @@ export class McQuestion extends HTMLElement {
   
       this.shadowRoot.innerHTML = `
         <style>
+          .mc-question {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+          }
           .question {
             font-weight: bold;
           }

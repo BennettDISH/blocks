@@ -21,17 +21,16 @@ export class SwapBlock extends HTMLElement {
 
   render() {
     const items = this.state.items || [];
-
-    const buttons = items.map((item, index) => {
-      return `<button data-index="${index}">${item.header}</button>`;
-    }).join('');
-
-    const bodies = items.map((item, index) => {
-      return `<div class="content" data-index="${index}">${item.body}</div>`;
-    }).join('');
+    const buttons = items.map((item, index) => `<button data-index="${index}">${item.header}</button>`).join('');
+    const bodies = items.map((item, index) => `<div class="content" data-index="${index}">${item.body}</div>`).join('');
 
     this.shadowRoot.innerHTML = `
       <style>
+        .swap-block {
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+        }
         .content {
           display: none;
         }

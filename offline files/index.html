@@ -8,6 +8,13 @@
 </head>
 <body>
   <h1>Using Custom Web Components with CSS Grid</h1>
+  
+  <div class="controls">
+    <button id="add-row">Add Row</button>
+    <button id="add-column">Add Column</button>
+    <button id="reset-grid">Reset Grid</button>
+  </div>
+  
   <div class="grid-container">
     <div class="grid-item" id="text-block-container">
       <text-block></text-block>
@@ -26,12 +33,33 @@
   <script type="module">
     import 'https://bennettDISH.github.io/main.js';
 
-    Promise.all([
-      customElements.whenDefined('text-block'),
-      customElements.whenDefined('video-block'),
-      customElements.whenDefined('swap-block'),
-      customElements.whenDefined('mc-question')
-    ]).then(() => {
+    const gridContainer = document.querySelector('.grid-container');
+    let rows = 1;
+    let columns = 4; // Initial columns count based on initial setup
+
+    function updateGridTemplate() {
+      gridContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+      gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    }
+
+    document.getElementById('add-row').addEventListener('click', () => {
+      rows++;
+      updateGridTemplate();
+    });
+
+    document.getElementById('add-column').addEventListener('click', () => {
+      columns++;
+      updateGridTemplate();
+    });
+
+    document.getElementById('reset-grid').addEventListener('click', () => {
+      rows = 1;
+      columns = 4;
+      updateGridTemplate();
+      loadContent();
+    });
+
+    function loadContent() {
       const textBlock = document.querySelector('text-block');
       textBlock.data = { content: 'Hello from another site!' };
 
@@ -51,6 +79,17 @@
         options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
         correctAnswer: 2
       };
+    }
+
+    // Initial load
+    Promise.all([
+      customElements.whenDefined('text-block'),
+      customElements.whenDefined('video-block'),
+      customElements.whenDefined('swap-block'),
+      customElements.whenDefined('mc-question')
+    ]).then(() => {
+      updateGridTemplate();
+      loadContent();
     });
   </script>
 </body>
