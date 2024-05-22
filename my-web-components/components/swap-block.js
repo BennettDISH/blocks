@@ -7,7 +7,6 @@ export class SwapBlock extends HTMLElement {
   }
 
   set data(value) {
-    console.log('SwapBlock received data:', value);
     this.state = value;
     this.render();
   }
@@ -21,7 +20,6 @@ export class SwapBlock extends HTMLElement {
   }
 
   render() {
-    console.log('SwapBlock render called with state:', this.state);
     const items = this.state.items || [];
 
     const buttons = items.map((item, index) => {
@@ -34,21 +32,11 @@ export class SwapBlock extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       <style>
-        .swap-block {
-          border: 1px solid #ccc;
-          padding: 20px;
-          background-color: #fff;
-          width: 100%;
-          text-align: center;
-        }
         .content {
           display: none;
         }
         .content.active {
           display: block;
-        }
-        button {
-          margin: 5px;
         }
       </style>
       <div class="swap-block">
