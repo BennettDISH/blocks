@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Web Components</title>
+</head>
+<body>
+  <h1>Custom Web Components Demo</h1>
+  <text-block></text-block>
+  <video-block></video-block>
+  <swap-block></swap-block>
+
+  <script type="module" src="./main.js"></script>
+  <script>
+    const textBlock = document.querySelector('text-block');
+    textBlock.data = { content: 'Hello, world!' };
+
+    const videoBlock = document.querySelector('video-block');
+    videoBlock.data = { src: 'https://www.w3schools.com/html/mov_bbb.mp4' };
+
+    const swapBlock = document.querySelector('swap-block');
+    swapBlock.data = { content1: 'First content', content2: 'Second content' };
+  </script>
+</body>
+</html>
