@@ -39,5 +39,7 @@ export class TextBlock extends HTMLElement {
     }
   }
   
-  customElements.define('text-block', TextBlock);
+  if (!customElements.get('text-block')) {
+    customElements.define('text-block', TextBlock);
+  }
   

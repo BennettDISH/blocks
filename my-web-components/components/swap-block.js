@@ -57,5 +57,7 @@ export class SwapBlock extends HTMLElement {
     }
   }
   
-  customElements.define('swap-block', SwapBlock);
+  if (!customElements.get('swap-block')) {
+    customElements.define('swap-block', SwapBlock);
+  }
   

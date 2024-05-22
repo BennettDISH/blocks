@@ -46,5 +46,7 @@ export class VideoBlock extends HTMLElement {
     }
   }
   
-  customElements.define('video-block', VideoBlock);
+  if (!customElements.get('video-block')) {
+    customElements.define('video-block', VideoBlock);
+  }
   
