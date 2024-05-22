@@ -7,6 +7,7 @@ export class TextBlock extends HTMLElement {
     }
   
     set data(value) {
+      console.log('TextBlock received data:', value);
       this.state = value;
       this.render();
     }
@@ -20,6 +21,7 @@ export class TextBlock extends HTMLElement {
     }
   
     render() {
+      console.log('TextBlock render called with state:', this.state);
       this.shadowRoot.innerHTML = `
         <style>
           .text-block {
@@ -31,7 +33,7 @@ export class TextBlock extends HTMLElement {
           }
         </style>
         <div class="text-block">
-          <p>${this.state.content}</p>
+          <p>${this.state.content || ''}</p>
         </div>
       `;
     }

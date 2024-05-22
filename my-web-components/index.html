@@ -15,12 +15,15 @@
   <script>
     const textBlock = document.querySelector('text-block');
     textBlock.data = { content: 'Hello, world!' };
+    console.log('TextBlock data set:', textBlock.data);
 
     const videoBlock = document.querySelector('video-block');
     videoBlock.data = { src: 'https://www.w3schools.com/html/mov_bbb.mp4' };
+    console.log('VideoBlock data set:', videoBlock.data);
 
     const swapBlock = document.querySelector('swap-block');
     swapBlock.data = { content1: 'First content', content2: 'Second content' };
+    console.log('SwapBlock data set:', swapBlock.data);
   </script>
 </body>
 </html>
