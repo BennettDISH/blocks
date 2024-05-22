@@ -1,17 +1,27 @@
 # Block Library
 
-This project is a library of "blocks" that can be used to build fully functional websites. The library includes various types of blocks such as video blocks, text blocks, and swap activity blocks. These blocks are designed to be used in a website builder.
+A library of custom web components that can be used to build fully functional websites. This library includes various types of blocks such as video blocks, text blocks, and swap activity blocks.
 
-## Getting Started
+## Usage
 
-To get started with this project, clone the repository and open `index.html` in your web browser.
+To use the components in your project, link to the scripts hosted on our site and use the custom elements in your HTML.
 
-### Prerequisites
+### Example
 
-- A modern web browser
-
-### Installation
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-username/block-library.git
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Block Library</title>
+    <script src="https://yourdomain.com/video-block.js" defer></script>
+    <script src="https://yourdomain.com/text-block.js" defer></script>
+    <script src="https://yourdomain.com/swap-block.js" defer></script>
+</head>
+<body>
+    <video-block src="https://yourdomain.com/path/to/video.mp4"></video-block>
+    <text-block content="This is a text block."></text-block>
+    <swap-block content1="Content 1" content2="Content 2"></swap-block>
+</body>
+</html>
