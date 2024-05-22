@@ -4,12 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Using Custom Components</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Using Custom Web Components</h1>
-  <text-block></text-block>
-  <video-block></video-block>
-  <swap-block></swap-block>
+  <h1>Using Custom Web Components with CSS Grid</h1>
+  <div class="grid-container">
+    <div class="grid-item" id="text-block-container">
+      <text-block></text-block>
+    </div>
+    <div class="grid-item" id="video-block-container">
+      <video-block></video-block>
+    </div>
+    <div class="grid-item" id="swap-block-container">
+      <swap-block></swap-block>
+    </div>
+  </div>
 
   <script type="module">
     import 'https://bennettDISH.github.io/main.js';
