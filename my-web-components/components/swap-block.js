@@ -3,7 +3,7 @@ export class SwapBlock extends HTMLElement {
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
-      this.state = {};
+      this.state = { items: [] };
     }
   
     set data(value) {
@@ -18,20 +18,20 @@ export class SwapBlock extends HTMLElement {
   
     connectedCallback() {
       this.render();
-      const button = this.shadowRoot.querySelector('button');
-      const contents = this.shadowRoot.querySelectorAll('.content');
-      let activeIndex = 0;
-      contents[activeIndex].classList.add('active');
-  
-      button.addEventListener('click', () => {
-        contents[activeIndex].classList.remove('active');
-        activeIndex = (activeIndex + 1) % contents.length;
-        contents[activeIndex].classList.add('active');
-      });
     }
   
     render() {
       console.log('SwapBlock render called with state:', this.state);
+      const items = this.state.items || [];
+  
+      const buttons = items.map((item, index) => {
+        return `<button data-index="${index}">${item.header}</button>`;
+      }).join('');
+  
+      const bodies = items.map((item, index) => {
+        return `<div class="content" data-index="${index}">${item.body}</div>`;
+      }).join('');
+  
       this.shadowRoot.innerHTML = `
         <style>
           .swap-block {
@@ -47,13 +47,26 @@ export class SwapBlock extends HTMLElement {
           .content.active {
             display: block;
           }
+          button {
+            margin: 5px;
+          }
         </style>
         <div class="swap-block">
-          <button>Swap Content</button>
-          <div class="content">${this.state.content1 || ''}</div>
-          <div class="content">${this.state.content2 || ''}</div>
+          ${buttons}
+          ${bodies}
         </div>
       `;
+  
+      const buttonElements = this.shadowRoot.querySelectorAll('button');
+      const contentElements = this.shadowRoot.querySelectorAll('.content');
+  
+      buttonElements.forEach(button => {
+        button.addEventListener('click', () => {
+          const index = button.getAttribute('data-index');
+          contentElements.forEach(content => content.classList.remove('active'));
+          this.shadowRoot.querySelector(`.content[data-index="${index}"]`).classList.add('active');
+        });
+      });
     }
   }
   

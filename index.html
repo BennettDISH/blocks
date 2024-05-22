@@ -28,7 +28,11 @@
       console.log('VideoBlock data set:', videoBlock.data);
 
       const swapBlock = document.querySelector('swap-block');
-      swapBlock.data = { content1: 'First content', content2: 'Second content' };
+      swapBlock.data = { items: [
+        { header: 'First Item', body: 'This is the body of the first item.' },
+        { header: 'Second Item', body: 'This is the body of the second item.' },
+        { header: 'Third Item', body: 'This is the body of the third item.' }
+      ] };
       console.log('SwapBlock data set:', swapBlock.data);
     });
   </script>
