@@ -3,27 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Web Components</title>
+  <title>Using Custom Components</title>
 </head>
 <body>
-  <h1>Custom Web Components Demo</h1>
+  <h1>Using Custom Web Components</h1>
   <text-block></text-block>
   <video-block></video-block>
   <swap-block></swap-block>
 
-  <script type="module" src="./main.js"></script>
-  <script>
-    const textBlock = document.querySelector('text-block');
-    textBlock.data = { content: 'Hello, world!' };
-    console.log('TextBlock data set:', textBlock.data);
+  <script type="module">
+    import 'https://bennettDISH.github.io/main.js';
 
-    const videoBlock = document.querySelector('video-block');
-    videoBlock.data = { src: 'https://www.w3schools.com/html/mov_bbb.mp4' };
-    console.log('VideoBlock data set:', videoBlock.data);
+    Promise.all([
+      customElements.whenDefined('text-block'),
+      customElements.whenDefined('video-block'),
+      customElements.whenDefined('swap-block')
+    ]).then(() => {
+      const textBlock = document.querySelector('text-block');
+      textBlock.data = { content: 'Hello from another site!' };
+      console.log('TextBlock data set:', textBlock.data);
 
-    const swapBlock = document.querySelector('swap-block');
-    swapBlock.data = { content1: 'First content', content2: 'Second content' };
-    console.log('SwapBlock data set:', swapBlock.data);
+      const videoBlock = document.querySelector('video-block');
+      videoBlock.data = { src: 'https://www.w3schools.com/html/mov_bbb.mp4' };
+      console.log('VideoBlock data set:', videoBlock.data);
+
+      const swapBlock = document.querySelector('swap-block');
+      swapBlock.data = { content1: 'First content', content2: 'Second content' };
+      console.log('SwapBlock data set:', swapBlock.data);
+    });
   </script>
 </body>
 </html>
