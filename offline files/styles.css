@@ -29,7 +29,7 @@ body {
   }
   
   /* Minimal styling for web components */
-  text-block, video-block, swap-block {
+  text-block, video-block, swap-block, mc-question {
     display: block;
   }
   

@@ -18,6 +18,9 @@
     <div class="grid-item" id="swap-block-container">
       <swap-block></swap-block>
     </div>
+    <div class="grid-item" id="mc-question-container">
+      <mc-question></mc-question>
+    </div>
   </div>
 
   <script type="module">
@@ -26,7 +29,8 @@
     Promise.all([
       customElements.whenDefined('text-block'),
       customElements.whenDefined('video-block'),
-      customElements.whenDefined('swap-block')
+      customElements.whenDefined('swap-block'),
+      customElements.whenDefined('mc-question')
     ]).then(() => {
       const textBlock = document.querySelector('text-block');
       textBlock.data = { content: 'Hello from another site!' };
@@ -40,6 +44,13 @@
         { header: 'Second Item', body: 'This is the body of the second item.' },
         { header: 'Third Item', body: 'This is the body of the third item.' }
       ] };
+
+      const mcQuestion = document.querySelector('mc-question');
+      mcQuestion.data = {
+        question: 'What is the capital of France?',
+        options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
+        correctAnswer: 2
+      };
     });
   </script>
 </body>
