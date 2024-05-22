@@ -26,11 +26,9 @@ export class VideoBlock extends HTMLElement {
           width: 100%;
           height: 100%;
           box-sizing: border-box;
-          background-color: var(--video-block-color);
-          margin: 50px;
         }
         video {
-          width: 50%;
+          width: 100%;
           height: 100%;
           object-fit: cover;
         }
