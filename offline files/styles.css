@@ -1,5 +1,7 @@
 /* styles.css */
-
+:root {
+    --video-block-color: green;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -41,8 +43,19 @@ body {
     padding: 20px;
     text-align: center;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+  }
+  
+  .item-controls {
+    display: flex;
     justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .item-controls button {
+    margin: 2px;
+    padding: 5px 10px;
+    cursor: pointer;
   }
   
   /* Minimal styling for web components */

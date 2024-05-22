@@ -17,15 +17,47 @@
   
   <div class="grid-container">
     <div class="grid-item" id="text-block-container">
+      <div class="item-controls">
+        <button class="move-up">↑</button>
+        <button class="move-down">↓</button>
+        <button class="move-left">←</button>
+        <button class="move-right">→</button>
+        <button class="grow">Grow</button>
+        <button class="shrink">Shrink</button>
+      </div>
       <text-block></text-block>
     </div>
     <div class="grid-item" id="video-block-container">
+      <div class="item-controls">
+        <button class="move-up">↑</button>
+        <button class="move-down">↓</button>
+        <button class="move-left">←</button>
+        <button class="move-right">→</button>
+        <button class="grow">Grow</button>
+        <button class="shrink">Shrink</button>
+      </div>
       <video-block></video-block>
     </div>
     <div class="grid-item" id="swap-block-container">
+      <div class="item-controls">
+        <button class="move-up">↑</button>
+        <button class="move-down">↓</button>
+        <button class="move-left">←</button>
+        <button class="move-right">→</button>
+        <button class="grow">Grow</button>
+        <button class="shrink">Shrink</button>
+      </div>
       <swap-block></swap-block>
     </div>
     <div class="grid-item" id="mc-question-container">
+      <div class="item-controls">
+        <button class="move-up">↑</button>
+        <button class="move-down">↓</button>
+        <button class="move-left">←</button>
+        <button class="move-right">→</button>
+        <button class="grow">Grow</button>
+        <button class="shrink">Shrink</button>
+      </div>
       <mc-question></mc-question>
     </div>
   </div>
@@ -57,6 +89,7 @@
       columns = 4;
       updateGridTemplate();
       loadContent();
+      addControls();
     });
 
     function loadContent() {
@@ -81,6 +114,49 @@
       };
     }
 
+    function addControls() {
+      const gridItems = document.querySelectorAll('.grid-item');
+      gridItems.forEach(item => {
+        item.querySelector('.move-up').addEventListener('click', () => moveItem(item, 'up'));
+        item.querySelector('.move-down').addEventListener('click', () => moveItem(item, 'down'));
+        item.querySelector('.move-left').addEventListener('click', () => moveItem(item, 'left'));
+        item.querySelector('.move-right').addEventListener('click', () => moveItem(item, 'right'));
+        item.querySelector('.grow').addEventListener('click', () => resizeItem(item, 'grow'));
+        item.querySelector('.shrink').addEventListener('click', () => resizeItem(item, 'shrink'));
+      });
+    }
+
+    function moveItem(item, direction) {
+      const style = window.getComputedStyle(item);
+      let row = parseInt(style.gridRowStart);
+      let column = parseInt(style.gridColumnStart);
+      let rowEnd = style.gridRowEnd === 'auto' ? row + 1 : parseInt(style.gridRowEnd);
+      let columnEnd = style.gridColumnEnd === 'auto' ? column + 1 : parseInt(style.gridColumnEnd);
+
+      if (direction === 'up' && row > 1) row--;
+      if (direction === 'down' && rowEnd <= rows) row++;
+      if (direction === 'left' && column > 1) column--;
+      if (direction === 'right' && columnEnd <= columns) column++;
+
+      item.style.gridRowStart = row;
+      item.style.gridColumnStart = column;
+    }
+
+    function resizeItem(item, action) {
+      const style = window.getComputedStyle(item);
+      let rowSpan = style.gridRowEnd === 'auto' ? 1 : parseInt(style.gridRowEnd) - parseInt(style.gridRowStart);
+      let columnSpan = style.gridColumnEnd === 'auto' ? 1 : parseInt(style.gridColumnEnd) - parseInt(style.gridColumnStart);
+
+      if (action === 'grow') {
+        item.style.gridRowEnd = `span ${rowSpan + 1}`;
+        item.style.gridColumnEnd = `span ${columnSpan + 1}`;
+      }
+      if (action === 'shrink' && rowSpan > 1 && columnSpan > 1) {
+        item.style.gridRowEnd = `span ${rowSpan - 1}`;
+        item.style.gridColumnEnd = `span ${columnSpan - 1}`;
+      }
+    }
+
     // Initial load
     Promise.all([
       customElements.whenDefined('text-block'),
@@ -90,6 +166,7 @@
     ]).then(() => {
       updateGridTemplate();
       loadContent();
+      addControls();
     });
   </script>
 </body>
