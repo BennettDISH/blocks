@@ -28,13 +28,8 @@ body {
     padding: 20px;
   }
   
-  /* Styling for text-block */
-  text-block {
-    display: block;
-  }
-  
-  /* Styling for video-block */
-  video-block {
+  /* Minimal styling for web components */
+  text-block, video-block, swap-block {
     display: block;
   }
   
@@ -43,12 +38,7 @@ body {
     height: auto;
   }
   
-  /* Styling for swap-block */
-  swap-block {
-    display: block;
-  }
-  
-  /* Styling for buttons and content inside swap-block */
+  /* General button styling for swap-block */
   swap-block button {
     display: block;
     width: 100%;
@@ -65,14 +55,10 @@ body {
     background-color: #0056b3;
   }
   
+  /* Content styling for swap-block */
   swap-block .content {
-    display: none;
     padding: 10px;
     border-top: 1px solid #ddd;
     background-color: #f9f9f9;
-  }
-  
-  swap-block .content.active {
-    display: block;
   }
   

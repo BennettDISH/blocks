@@ -33,6 +33,24 @@ export class SwapBlock extends HTMLElement {
     }).join('');
 
     this.shadowRoot.innerHTML = `
+      <style>
+        .swap-block {
+          border: 1px solid #ccc;
+          padding: 20px;
+          background-color: #fff;
+          width: 100%;
+          text-align: center;
+        }
+        .content {
+          display: none;
+        }
+        .content.active {
+          display: block;
+        }
+        button {
+          margin: 5px;
+        }
+      </style>
       <div class="swap-block">
         ${buttons}
         ${bodies}
