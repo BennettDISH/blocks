@@ -1,4 +1,6 @@
-export default class McQuestion extends HTMLElement {
+// /components/mc-question.js
+(function() {
+  class McQuestion extends HTMLElement {
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
@@ -40,24 +42,24 @@ export default class McQuestion extends HTMLElement {
         </div>
       `;
     }
-  
+
     set data(value) {
       this.state = value;
       this.render();
     }
-  
+
     get data() {
       return this.state;
     }
-  
+
     connectedCallback() {
       this.render();
     }
-  
+
     render() {
       const { question, options, selectedAnswer, correctAnswer } = this.state;
       this.shadowRoot.querySelector('.question').textContent = question;
-  
+
       const optionsContainer = this.shadowRoot.querySelector('.options');
       optionsContainer.innerHTML = options.map((option, index) => {
         const isSelected = selectedAnswer === index ? 'selected' : '';
@@ -65,7 +67,7 @@ export default class McQuestion extends HTMLElement {
         const isIncorrect = selectedAnswer === index && index !== correctAnswer ? 'incorrect' : '';
         return `<button class="option ${isSelected} ${isCorrect} ${isIncorrect}" data-index="${index}">${option}</button>`;
       }).join('');
-  
+
       optionsContainer.querySelectorAll('.option').forEach(button => {
         button.addEventListener('click', () => {
           this.state.selectedAnswer = parseInt(button.getAttribute('data-index'), 10);
@@ -74,6 +76,6 @@ export default class McQuestion extends HTMLElement {
       });
     }
   }
-  
+
   customElements.define('mc-question', McQuestion);
-  
+})();
