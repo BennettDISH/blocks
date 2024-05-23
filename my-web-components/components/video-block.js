@@ -1,5 +1,5 @@
 // /components/video-block.js
-export class VideoBlock extends HTMLElement {
+class VideoBlock extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -43,6 +43,4 @@ export class VideoBlock extends HTMLElement {
   }
 }
 
-if (!customElements.get('video-block')) {
-  customElements.define('video-block', VideoBlock);
-}
+customElements.define('video-block', VideoBlock);

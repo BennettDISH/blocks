@@ -1,5 +1,5 @@
 // /components/swap-block.js
-export class SwapBlock extends HTMLElement {
+class SwapBlock extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -57,6 +57,4 @@ export class SwapBlock extends HTMLElement {
   }
 }
 
-if (!customElements.get('swap-block')) {
-  customElements.define('swap-block', SwapBlock);
-}
+customElements.define('swap-block', SwapBlock);

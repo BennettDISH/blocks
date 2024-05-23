@@ -3,106 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Using Custom Components with CSS Grid</title>
+  <title>Using Custom Web Components</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Using Custom Web Components with CSS Grid</h1>
+  <h1>Using Custom Web Components</h1>
   
-  <div class="controls">
-    <button id="add-row">Add Row</button>
-    <button id="add-column">Add Column</button>
-    <button id="reset-grid">Reset Grid</button>
-  </div>
-  
-  <div class="grid-container">
-    <div class="grid-item" id="text-block-container">
-      <div class="item-controls">
-        <button class="move-up">↑</button>
-        <button class="move-down">↓</button>
-        <button class="move-left">←</button>
-        <button class="move-right">→</button>
-        <button class="grow">Grow</button>
-        <button class="shrink">Shrink</button>
-      </div>
+  <div class="components-container">
+    <div class="component-item" id="text-block-container">
       <text-block></text-block>
     </div>
-    <div class="grid-item" id="video-block-container">
-      <div class="item-controls">
-        <button class="move-up">↑</button>
-        <button class="move-down">↓</button>
-        <button class="move-left">←</button>
-        <button class="move-right">→</button>
-        <button class="grow">Grow</button>
-        <button class="shrink">Shrink</button>
-      </div>
+    <div class="component-item" id="video-block-container">
       <video-block></video-block>
     </div>
-    <div class="grid-item" id="swap-block-container">
-      <div class="item-controls">
-        <button class="move-up">↑</button>
-        <button class="move-down">↓</button>
-        <button class="move-left">←</button>
-        <button class="move-right">→</button>
-        <button class="grow">Grow</button>
-        <button class="shrink">Shrink</button>
-      </div>
+    <div class="component-item" id="swap-block-container">
       <swap-block></swap-block>
     </div>
-    <div class="grid-item" id="mc-question-container">
-      <div class="item-controls">
-        <button class="move-up">↑</button>
-        <button class="move-down">↓</button>
-        <button class="move-left">←</button>
-        <button class="move-right">→</button>
-        <button class="grow">Grow</button>
-        <button class="shrink">Shrink</button>
-      </div>
+    <div class="component-item" id="mc-question-container">
       <mc-question></mc-question>
     </div>
-    <div class="grid-item" id="counter-block-container">
-      <div class="item-controls">
-        <button class="move-up">↑</button>
-        <button class="move-down">↓</button>
-        <button class="move-left">←</button>
-        <button class="move-right">→</button>
-        <button class="grow">Grow</button>
-        <button class="shrink">Shrink</button>
-      </div>
+    <div class="component-item" id="counter-block-container">
       <counter-block></counter-block>
     </div>
   </div>
 
+  <script type="module" src="components/text-block.js"></script>
+  <script type="module" src="components/video-block.js"></script>
+  <script type="module" src="components/swap-block.js"></script>
+  <script type="module" src="components/mc-question.js"></script>
+  <script type="module" src="components/counter-block.js"></script>
+
   <script type="module">
-    import 'https://bennettDISH.github.io/main.js';
-
-    const gridContainer = document.querySelector('.grid-container');
-    let rows = 1;
-    let columns = 4; // Initial columns count based on initial setup
-
-    function updateGridTemplate() {
-      gridContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-      gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-    }
-
-    document.getElementById('add-row').addEventListener('click', () => {
-      rows++;
-      updateGridTemplate();
-    });
-
-    document.getElementById('add-column').addEventListener('click', () => {
-      columns++;
-      updateGridTemplate();
-    });
-
-    document.getElementById('reset-grid').addEventListener('click', () => {
-      rows = 1;
-      columns = 4;
-      updateGridTemplate();
-      loadContent();
-      addControls();
-    });
-
     function loadContent() {
       const textBlock = document.querySelector('text-block');
       textBlock.data = { content: 'Hello from another site!' };
@@ -125,49 +56,6 @@
       };
     }
 
-    function addControls() {
-      const gridItems = document.querySelectorAll('.grid-item');
-      gridItems.forEach(item => {
-        item.querySelector('.move-up').addEventListener('click', () => moveItem(item, 'up'));
-        item.querySelector('.move-down').addEventListener('click', () => moveItem(item, 'down'));
-        item.querySelector('.move-left').addEventListener('click', () => moveItem(item, 'left'));
-        item.querySelector('.move-right').addEventListener('click', () => moveItem(item, 'right'));
-        item.querySelector('.grow').addEventListener('click', () => resizeItem(item, 'grow'));
-        item.querySelector('.shrink').addEventListener('click', () => resizeItem(item, 'shrink'));
-      });
-    }
-
-    function moveItem(item, direction) {
-      const style = window.getComputedStyle(item);
-      let row = parseInt(style.gridRowStart);
-      let column = parseInt(style.gridColumnStart);
-      let rowEnd = style.gridRowEnd === 'auto' ? row + 1 : parseInt(style.gridRowEnd);
-      let columnEnd = style.gridColumnEnd === 'auto' ? column + 1 : parseInt(style.gridColumnEnd);
-
-      if (direction === 'up' && row > 1) row--;
-      if (direction === 'down' && rowEnd <= rows) row++;
-      if (direction === 'left' && column > 1) column--;
-      if (direction === 'right' && columnEnd <= columns) column++;
-
-      item.style.gridRowStart = row;
-      item.style.gridColumnStart = column;
-    }
-
-    function resizeItem(item, action) {
-      const style = window.getComputedStyle(item);
-      let rowSpan = style.gridRowEnd === 'auto' ? 1 : parseInt(style.gridRowEnd) - parseInt(style.gridRowStart);
-      let columnSpan = style.gridColumnEnd === 'auto' ? 1 : parseInt(style.gridColumnEnd) - parseInt(style.gridColumnStart);
-
-      if (action === 'grow') {
-        item.style.gridRowEnd = `span ${rowSpan + 1}`;
-        item.style.gridColumnEnd = `span ${columnSpan + 1}`;
-      }
-      if (action === 'shrink' && rowSpan > 1 && columnSpan > 1) {
-        item.style.gridRowEnd = `span ${rowSpan - 1}`;
-        item.style.gridColumnEnd = `span ${columnSpan - 1}`;
-      }
-    }
-
     // Initial load
     Promise.all([
       customElements.whenDefined('text-block'),
@@ -176,9 +64,7 @@
       customElements.whenDefined('mc-question'),
       customElements.whenDefined('counter-block')
     ]).then(() => {
-      updateGridTemplate();
       loadContent();
-      addControls();
     });
 
     // Example of triggering a custom event

@@ -1,5 +1,5 @@
 // /components/text-block.js
-export class TextBlock extends HTMLElement {
+class TextBlock extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -35,6 +35,4 @@ export class TextBlock extends HTMLElement {
   }
 }
 
-if (!customElements.get('text-block')) {
-  customElements.define('text-block', TextBlock);
-}
+customElements.define('text-block', TextBlock);

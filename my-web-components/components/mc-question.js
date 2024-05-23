@@ -1,5 +1,5 @@
 // /components/mc-question.js
-export class McQuestion extends HTMLElement {
+class McQuestion extends HTMLElement {
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
@@ -75,7 +75,5 @@ export class McQuestion extends HTMLElement {
     }
   }
   
-  if (!customElements.get('mc-question')) {
-    customElements.define('mc-question', McQuestion);
-  }
+  customElements.define('mc-question', McQuestion);
   
