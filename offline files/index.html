@@ -60,6 +60,17 @@
       </div>
       <mc-question></mc-question>
     </div>
+    <div class="grid-item" id="counter-block-container">
+      <div class="item-controls">
+        <button class="move-up">↑</button>
+        <button class="move-down">↓</button>
+        <button class="move-left">←</button>
+        <button class="move-right">→</button>
+        <button class="grow">Grow</button>
+        <button class="shrink">Shrink</button>
+      </div>
+      <counter-block></counter-block>
+    </div>
   </div>
 
   <script type="module">
@@ -162,11 +173,22 @@
       customElements.whenDefined('text-block'),
       customElements.whenDefined('video-block'),
       customElements.whenDefined('swap-block'),
-      customElements.whenDefined('mc-question')
+      customElements.whenDefined('mc-question'),
+      customElements.whenDefined('counter-block')
     ]).then(() => {
       updateGridTemplate();
       loadContent();
       addControls();
+    });
+
+    // Example of triggering a custom event
+    document.getElementById('counter-block-container').addEventListener('updatecount', (event) => {
+      console.log('Counter updated:', event.detail.count);
+      const detail = {
+        customData: { count: event.detail.count }
+      };
+      const datatrackingEvent = new CustomEvent('datatracking', { detail });
+      window.dispatchEvent(datatrackingEvent);
     });
   </script>
 </body>

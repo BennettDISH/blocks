@@ -57,7 +57,7 @@ body {
   }
   
   /* Minimal styling for web components */
-  text-block, video-block, swap-block, mc-question {
+  text-block, video-block, swap-block, mc-question, counter-block {
     width: 100%;
     height: 100%;
   }
