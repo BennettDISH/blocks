@@ -47,12 +47,8 @@
 
     handleButtonClick() {
       this.state.count += 1;
-      this.dispatchEvent(new CustomEvent('updatecount', {
-        detail: { count: this.state.count },
-        bubbles: true,
-        composed: true
-      }));
       this.render();
+      this.trackData();
     }
 
     handleDataTrackingEvent(event) {
@@ -60,6 +56,14 @@
         this.state.count = event.detail.customData.count;
         this.render();
       }
+    }
+
+    trackData() {
+      const detail = {
+        customData: { count: this.state.count }
+      };
+      const datatrackingEvent = new CustomEvent('datatracking', { detail });
+      window.dispatchEvent(datatrackingEvent);
     }
 
     render() {

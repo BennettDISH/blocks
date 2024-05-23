@@ -70,15 +70,15 @@
       loadContent();
     });
 
-    // Example of triggering a custom event
-    document.getElementById('counter-block-container').addEventListener('updatecount', (event) => {
-      console.log('Counter updated:', event.detail.count);
-      const detail = {
-        customData: { count: event.detail.count }
-      };
-      const datatrackingEvent = new CustomEvent('datatracking', { detail });
-      window.dispatchEvent(datatrackingEvent);
+    window.addEventListener('datatracking', (event) => {
+      console.log('Data tracking changed:', event.detail, datatracking);
     });
+
+    const datatracking = {
+      data: {
+        customData: {}
+      }
+    };
   </script>
 </body>
 </html>
