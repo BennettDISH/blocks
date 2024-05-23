@@ -1,5 +1,5 @@
 // /components/counter-block.js
-(function() {
+(function () {
   class CounterBlock extends HTMLElement {
     constructor() {
       super();
@@ -68,6 +68,9 @@
 
     render() {
       this.shadowRoot.querySelector('p').textContent = `Count: ${this.state.count}`;
+      window.addEventListener('datatracking', (event) => {
+        console.log('Data tracking changed:', event.detail, datatracking);
+      });
     }
   }
 
