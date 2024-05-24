@@ -69,7 +69,6 @@
     render() {
       this.shadowRoot.querySelector('p').textContent = `Count: ${this.state.count}`;
       window.addEventListener('datatracking', (event) => {
-        console.log('Data tracking changed:', event.detail, datatracking);
       });
     }
   }
