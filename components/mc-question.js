@@ -1,6 +1,6 @@
 // /components/mc-question.js
-(function() {
-  class McQuestion extends HTMLElement {
+
+export default  class McQuestion extends HTMLElement {
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
@@ -78,4 +78,4 @@
   }
 
   customElements.define('mc-question', McQuestion);
-})();
+

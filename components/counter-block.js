@@ -1,6 +1,6 @@
 // /components/counter-block.js
-(function () {
-  class CounterBlock extends HTMLElement {
+
+export default  class CounterBlock extends HTMLElement {
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
@@ -25,33 +25,32 @@
       `;
     }
 
-    set data(value) {
-      this.state = value;
+    set data(props) {
+      this.props = props;
       this.render();
     }
 
     get data() {
-      return this.state;
+      return this.props;
     }
 
     connectedCallback() {
       this.render();
-      this.shadowRoot.querySelector('button').addEventListener('click', this.handleButtonClick.bind(this));
-      window.addEventListener('datatracking', this.handleDataTrackingEvent.bind(this));
+      this.shadowRoot.querySelector('button').addEventListener('click', this.handleButtonClick);
+      window.addEventListener('datatracking', this.handleDataTrackingEvent);
     }
 
     disconnectedCallback() {
-      this.shadowRoot.querySelector('button').removeEventListener('click', this.handleButtonClick.bind(this));
-      window.removeEventListener('datatracking', this.handleDataTrackingEvent.bind(this));
+      window.removeEventListener('datatracking', this.handleDataTrackingEvent);
     }
 
-    handleButtonClick() {
+    handleButtonClick = () => {
       this.state.count += 1;
       this.render();
       this.trackData();
     }
 
-    handleDataTrackingEvent(event) {
+    handleDataTrackingEvent = (event) => {
       if (event.detail && event.detail.customData && typeof event.detail.customData.count !== 'undefined') {
         this.state.count = event.detail.customData.count;
         this.render();
@@ -59,19 +58,13 @@
     }
 
     trackData() {
-      const detail = {
-        customData: { count: this.state.count }
-      };
-      const datatrackingEvent = new CustomEvent('datatracking', { detail });
-      window.dispatchEvent(datatrackingEvent);
+      window.datatracking?.setCustomData( {count: this.state.count} )
     }
 
     render() {
       this.shadowRoot.querySelector('p').textContent = `Count: ${this.state.count}`;
-      window.addEventListener('datatracking', (event) => {
-      });
     }
   }
 
   customElements.define('counter-block', CounterBlock);
-})();
+

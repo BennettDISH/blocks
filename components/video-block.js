@@ -1,6 +1,6 @@
 // /components/video-block.js
-(function() {
-  class VideoBlock extends HTMLElement {
+
+export default  class VideoBlock extends HTMLElement {
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
@@ -46,4 +46,4 @@
   }
 
   customElements.define('video-block', VideoBlock);
-})();
+
