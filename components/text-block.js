@@ -1,41 +1,40 @@
 // /components/text-block.js
 
-export default  class TextBlock extends HTMLElement {
-    constructor() {
-      super();
-      this.attachShadow({ mode: 'open' });
-      this.state = {};
-      this.shadowRoot.innerHTML = `
-        <style>
-          .text-block {
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-          }
-        </style>
-        <div class="text-block">
-          <p></p>
-        </div>
-      `;
-    }
-
-    set data(value) {
-      this.state = value;
-      this.render();
-    }
-
-    get data() {
-      return this.state;
-    }
-
-    connectedCallback() {
-      this.render();
-    }
-
-    render() {
-      this.shadowRoot.querySelector('p').textContent = this.state.content || '';
-    }
+export default class TextBlock extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.props = {};
+    this.shadowRoot.innerHTML = `
+      <style>
+        .text-block {
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+        }
+      </style>
+      <div class="text-block">
+        <p></p>
+      </div>
+    `;
   }
 
-  customElements.define('text-block', TextBlock);
+  set data(value) {
+    this.props = value;
+    this.render();
+  }
 
+  get data() {
+    return this.props;
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.shadowRoot.querySelector('p').innerHTML = this.props.content || '';
+  }
+}
+
+customElements.define('text-block', TextBlock);
