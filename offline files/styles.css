@@ -1,15 +1,17 @@
 /* /styles/theme.css */
 
 :root {
-  --text-block-padding: 20px;
-  --text-block-font-family: 'Roboto', sans-serif;
-  --text-block-font-size: 1.2rem;
-  --text-block-color: #333;
-  --text-block-background-color: red;
-
-  --video-block-width: 100%;
-  --video-block-height: 100%;
-  --video-block-object-fit: cover;
+  --primary-color: #333;
+  --secondary-color: #fff;
+  --accent-color: #007bff;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --font-family: 'Roboto', sans-serif;
+  --font-size: 1.2rem;
+  --padding: 20px;
+  --border-radius: 4px;
+  --button-padding: 10px 20px;
+  --button-margin: 10px;
 }
 
 /* Additional global styles can go here */

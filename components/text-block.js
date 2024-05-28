@@ -11,11 +11,11 @@ export default class TextBlock extends HTMLElement {
           width: 100%;
           height: 100%;
           box-sizing: border-box;
-          padding: var(--text-block-padding, 16px);
-          font-family: var(--text-block-font-family, 'Roboto', sans-serif);
-          font-size: var(--text-block-font-size, 1rem);
-          color: var(--text-block-color, #000);
-          background-color: var(--text-block-background-color);
+          padding: var(--padding, 16px);
+          font-family: var(--font-family, 'Roboto', sans-serif);
+          font-size: var(--font-size, 1rem);
+          color: var(--primary-color, #000);
+          background-color: var(--secondary-color, #fff);
         }
       </style>
       <div class="text-block">

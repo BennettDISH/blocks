@@ -15,7 +15,7 @@ export default class VideoBlock extends HTMLElement {
         video {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: var(--video-object-fit, cover);
         }
       </style>
       <div class="video-block">
