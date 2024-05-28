@@ -1,8 +1,8 @@
 /* /styles/theme.css */
 
 :root {
-  --primary-color: #333;
-  --secondary-color: #fff;
+  --primary-color: #fff;
+  --secondary-color: #333;
   --accent-color: #007bff;
   --success-color: #28a745;
   --error-color: #dc3545;

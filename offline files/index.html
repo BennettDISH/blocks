@@ -25,6 +25,9 @@
     <div class="component-item" id="counter-block-container">
       <counter-block></counter-block>
     </div>
+    <div class="component-item" id="image-block-container">
+      <image-block></image-block>
+    </div>
   </div>
 
   <script src="https://bennettDISH.github.io/components/text-block.js" type="module"></script>
@@ -32,31 +35,27 @@
   <script src="https://bennettDISH.github.io/components/swap-block.js" type="module"></script>
   <script src="https://bennettDISH.github.io/components/mc-question.js" type="module"></script>
   <script src="https://bennettDISH.github.io/components/counter-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/image-block.js" type="module"></script>
 
   <script>
     function loadContent() {
       const textBlock = document.querySelector('text-block');
-      textBlock.data = { content: '<h1>Hello from another site!</h1>' };
+      textBlock.data = { content: '<p>Hello from another site!</p>' };
 
       const videoBlock = document.querySelector('video-block');
       videoBlock.data = { src: 'https://www.w3schools.com/html/mov_bbb.mp4' };
 
       const swapBlock = document.querySelector('swap-block');
-      swapBlock.data = { items: [
-        { header: 'First Item', body: 'This is the body of the first item.' },
-        { header: 'Second Item', body: 'This is the body of the second item.' },
-        { header: 'Third Item', body: 'This is the body of the third item.' }
-      ] };
+      swapBlock.data = { items: [{ header: 'First', body: 'First body' }, { header: 'Second', body: 'Second body' }] };
 
       const mcQuestion = document.querySelector('mc-question');
-      mcQuestion.data = {
-        question: 'What is the capital of France?',
-        options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
-        correctAnswer: 2
-      };
+      mcQuestion.data = { question: 'What is 2+2?', options: ['3', '4', '5'], correctAnswer: 1 };
 
       const counterBlock = document.querySelector('counter-block');
       counterBlock.data = { count: 0 };
+
+      const imageBlock = document.querySelector('image-block');
+      imageBlock.data = { src: 'https://via.placeholder.com/150', alt: 'Placeholder Image' };
     }
 
     // Initial load
@@ -65,7 +64,8 @@
       customElements.whenDefined('video-block'),
       customElements.whenDefined('swap-block'),
       customElements.whenDefined('mc-question'),
-      customElements.whenDefined('counter-block')
+      customElements.whenDefined('counter-block'),
+      customElements.whenDefined('image-block')
     ]).then(() => {
       loadContent();
     });

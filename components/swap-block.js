@@ -75,12 +75,19 @@ export default class SwapBlock extends HTMLElement {
       <button data-index="${index}" aria-controls="content-${index}" aria-expanded="false">
         ${item.header}
       </button>`).join('');
-    const bodies = this.props.items.map((item, index) => `
-      <div id="content-${index}" class="content" data-index="${index}" role="region" aria-hidden="true">
-        ${item.body}
-      </div>`).join('');
 
-    container.innerHTML = `${buttons}${bodies}`;
+    container.innerHTML = buttons;
+
+    this.props.items.forEach((item, index) => {
+      const contentDiv = document.createElement('div');
+      contentDiv.id = `content-${index}`;
+      contentDiv.classList.add('content');
+      contentDiv.setAttribute('data-index', index);
+      contentDiv.setAttribute('role', 'region');
+      contentDiv.setAttribute('aria-hidden', 'true');
+      contentDiv.innerHTML = item.body;
+      container.appendChild(contentDiv);
+    });
 
     const buttonElements = container.querySelectorAll('button');
     const contentElements = container.querySelectorAll('.content');
