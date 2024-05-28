@@ -18,8 +18,8 @@ export default class TextBlock extends HTMLElement {
           background-color: var(--secondary-color, #fff);
         }
       </style>
-      <div class="text-block">
-        <p></p>
+      <div class="text-block" role="region" aria-label="Text Block">
+        <p id="text-content"></p>
       </div>
     `;
   }
@@ -38,7 +38,9 @@ export default class TextBlock extends HTMLElement {
   }
 
   render() {
-    this.shadowRoot.querySelector('p').innerHTML = this.props.content || '';
+    const textContent = this.shadowRoot.querySelector('#text-content');
+    textContent.innerHTML = this.props.content || '';
+    textContent.setAttribute('aria-live', 'polite'); // Announce changes to screen readers
   }
 }
 
