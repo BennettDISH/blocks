@@ -1,37 +1,15 @@
-/* styles.css */
+/* /styles/theme.css */
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
-  }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .components-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .component-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    flex: 1 1 300px;
-  }
-  
-  /* Minimal styling for web components */
-  text-block, video-block, swap-block, mc-question, counter-block {
-    width: 100%;
-    height: 100%;
-  }
-  
+:root {
+  --text-block-padding: 20px;
+  --text-block-font-family: 'Roboto', sans-serif;
+  --text-block-font-size: 1.2rem;
+  --text-block-color: #333;
+  --text-block-background-color: red;
+
+  --video-block-width: 100%;
+  --video-block-height: 100%;
+  --video-block-object-fit: cover;
+}
+
+/* Additional global styles can go here */

@@ -11,6 +11,11 @@ export default class TextBlock extends HTMLElement {
           width: 100%;
           height: 100%;
           box-sizing: border-box;
+          padding: var(--text-block-padding, 16px);
+          font-family: var(--text-block-font-family, 'Roboto', sans-serif);
+          font-size: var(--text-block-font-size, 1rem);
+          color: var(--text-block-color, #000);
+          background-color: var(--text-block-background-color);
         }
       </style>
       <div class="text-block">
@@ -32,9 +37,7 @@ export default class TextBlock extends HTMLElement {
     this.render();
   }
 
-  
   render() {
-    console.log(this.props)
     this.shadowRoot.querySelector('p').innerHTML = this.props.content || '';
   }
 }
