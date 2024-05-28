@@ -4,7 +4,8 @@ export default class McQuestion extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.state = { question: '', options: [], correctAnswer: null, selectedAnswer: null };
+    this.props = { question: '', options: [], correctAnswer: null, selectedAnswer: null };
+    this.eventListeners = []; // Track event listeners for cleanup
     this.shadowRoot.innerHTML = `
       <style>
         .mc-question {
@@ -37,28 +38,52 @@ export default class McQuestion extends HTMLElement {
           background-color: #f8d7da;
         }
       </style>
-      <div class="mc-question">
-        <div class="question"></div>
+      <div class="mc-question" role="region" aria-label="Multiple Choice Question">
+        <div class="question" id="question-text"></div>
         <div class="options"></div>
       </div>
     `;
   }
 
   set data(value) {
-    this.state = value;
+    this.props = value;
     this.render();
   }
 
   get data() {
-    return this.state;
+    return this.props;
   }
 
   connectedCallback() {
     this.render();
   }
 
+  disconnectedCallback() {
+    this.cleanupEventListeners();
+  }
+
+  cleanupEventListeners() {
+    this.eventListeners.forEach(({ element, event, handler }) => {
+      element.removeEventListener(event, handler);
+    });
+    this.eventListeners = [];
+  }
+
+  handleOptionClick = (event) => {
+    const index = parseInt(event.target.getAttribute('data-index'), 10);
+    this.props.selectedAnswer = index;
+    this.render();
+
+    // Update aria attributes for accessibility
+    const options = this.shadowRoot.querySelectorAll('.option');
+    options.forEach((option, idx) => {
+      option.setAttribute('aria-selected', idx === index);
+      option.setAttribute('aria-label', `${option.textContent}, ${idx === this.props.correctAnswer ? 'correct' : 'incorrect'}`);
+    });
+  }
+
   render() {
-    const { question, options, selectedAnswer, correctAnswer } = this.state;
+    const { question, options, selectedAnswer, correctAnswer } = this.props;
     this.shadowRoot.querySelector('.question').textContent = question;
 
     const optionsContainer = this.shadowRoot.querySelector('.options');
@@ -66,14 +91,20 @@ export default class McQuestion extends HTMLElement {
       const isSelected = selectedAnswer === index ? 'selected' : '';
       const isCorrect = selectedAnswer === index && index === correctAnswer ? 'correct' : '';
       const isIncorrect = selectedAnswer === index && index !== correctAnswer ? 'incorrect' : '';
-      return `<button class="option ${isSelected} ${isCorrect} ${isIncorrect}" data-index="${index}">${option}</button>`;
+      return `<button class="option ${isSelected} ${isCorrect} ${isIncorrect}" data-index="${index}" role="option" aria-selected="${isSelected === 'selected'}">
+                ${option}
+              </button>`;
     }).join('');
 
-    optionsContainer.querySelectorAll('.option').forEach(button => {
-      button.addEventListener('click', () => {
-        this.state.selectedAnswer = parseInt(button.getAttribute('data-index'), 10);
-        this.render();
-      });
+    const buttonElements = optionsContainer.querySelectorAll('.option');
+
+    // Cleanup old event listeners
+    this.cleanupEventListeners();
+
+    buttonElements.forEach(button => {
+      const handler = this.handleOptionClick.bind(this);
+      button.addEventListener('click', handler);
+      this.eventListeners.push({ element: button, event: 'click', handler });
     });
   }
 }

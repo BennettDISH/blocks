@@ -5,6 +5,7 @@ export default class CounterBlock extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.state = { count: 0 };
+    this.props = {};
     this.shadowRoot.innerHTML = `
       <style>
         .counter-block {
@@ -18,15 +19,18 @@ export default class CounterBlock extends HTMLElement {
           cursor: pointer;
         }
       </style>
-      <div class="counter-block">
-        <p>Count: 0</p>
-        <button>Increment</button>
+      <div class="counter-block" role="region" aria-label="Counter Block">
+        <p id="count-display">Count: 0</p>
+        <button id="increment-button">Increment</button>
       </div>
     `;
   }
 
   set data(props) {
     this.props = props;
+    if (typeof props.count === 'number') {
+      this.state.count = props.count;
+    }
     this.render();
   }
 
@@ -36,11 +40,12 @@ export default class CounterBlock extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    this.shadowRoot.querySelector('button').addEventListener('click', this.handleButtonClick);
+    this.shadowRoot.querySelector('#increment-button').addEventListener('click', this.handleButtonClick);
     window.addEventListener('datatracking', this.handleDataTrackingEvent);
   }
 
   disconnectedCallback() {
+    this.shadowRoot.querySelector('#increment-button').removeEventListener('click', this.handleButtonClick);
     window.removeEventListener('datatracking', this.handleDataTrackingEvent);
   }
 
@@ -62,7 +67,7 @@ export default class CounterBlock extends HTMLElement {
   }
 
   render() {
-    this.shadowRoot.querySelector('p').textContent = `Count: ${this.state.count}`;
+    this.shadowRoot.querySelector('#count-display').textContent = `Count: ${this.state.count}`;
   }
 }
 
