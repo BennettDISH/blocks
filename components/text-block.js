@@ -32,7 +32,9 @@ export default class TextBlock extends HTMLElement {
     this.render();
   }
 
+  
   render() {
+    console.log(this.props)
     this.shadowRoot.querySelector('p').innerHTML = this.props.content || '';
   }
 }
