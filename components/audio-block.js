@@ -42,6 +42,7 @@ export default class AudioBlock extends HTMLElement {
   }
 
   render() {
+    console.log(this.props)
     const audioElement = this.shadowRoot.querySelector('audio source');
     audioElement.src = this.props.src || '';
   }
