@@ -20,7 +20,7 @@ export default class IntroBlock extends HTMLElement {
           font-family: var(--font-family, 'Roboto', sans-serif);
           transition: opacity 0.5s ease-out;
           position: relative;
-          z-index: 99;
+          z-index: 1;
         }
         .hidden {
           opacity: 0;
