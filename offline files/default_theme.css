@@ -1,0 +1,17 @@
+/* /styles/theme.css */
+
+:root {
+  --primary-color: #fff;
+  --secondary-color: #333;
+  --accent-color: #007bff;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --font-family: 'Roboto', sans-serif;
+  --font-size: 1.2rem;
+  --padding: 20px;
+  --border-radius: 4px;
+  --button-padding: 10px 20px;
+  --button-margin: 10px;
+}
+
+/* Additional global styles can go here */
