@@ -19,8 +19,6 @@ export default class IntroBlock extends HTMLElement {
           padding: var(--padding, 20px);
           font-family: var(--font-family, 'Roboto', sans-serif);
           transition: opacity 0.5s ease-out;
-          position: relative;
-          z-index: 1;
         }
         .hidden {
           opacity: 0;
