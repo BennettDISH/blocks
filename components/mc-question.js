@@ -37,10 +37,25 @@ export default class McQuestion extends HTMLElement {
           border-color: var(--error-color, #dc3545);
           background-color: #f8d7da;
         }
+        .feedback {
+          margin-top: 10px;
+          font-family: var(--font-family, 'Roboto', sans-serif);
+        }
+        button.submit-button {
+          margin-top: 10px;
+          padding: var(--button-padding, 10px 20px);
+          cursor: pointer;
+          background-color: var(--accent-color, #007bff);
+          color: #fff;
+          border: none;
+          border-radius: var(--border-radius, 4px);
+        }
       </style>
       <div class="mc-question" role="region" aria-label="Multiple Choice Question">
         <div class="question" id="question-text"></div>
         <div class="options"></div>
+        <button class="submit-button">Submit</button>
+        <div class="feedback"></div>
       </div>
     `;
   }
@@ -56,6 +71,7 @@ export default class McQuestion extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.shadowRoot.querySelector('.submit-button').addEventListener('click', this.handleSubmit);
   }
 
   disconnectedCallback() {
@@ -73,25 +89,27 @@ export default class McQuestion extends HTMLElement {
     const index = parseInt(event.target.getAttribute('data-index'), 10);
     this.props.selectedAnswer = index;
     this.render();
+  }
 
-    // Update aria attributes for accessibility
-    const options = this.shadowRoot.querySelectorAll('.option');
-    options.forEach((option, idx) => {
-      option.setAttribute('aria-selected', idx === index);
-      option.setAttribute('aria-label', `${option.textContent}, ${idx === this.props.correctAnswer ? 'correct' : 'incorrect'}`);
-    });
+  handleSubmit = () => {
+    const feedbackElement = this.shadowRoot.querySelector('.feedback');
+    if (this.props.selectedAnswer === this.props.correctAnswer) {
+      feedbackElement.textContent = 'Correct!';
+      feedbackElement.style.color = 'var(--success-color, #28a745)';
+    } else {
+      feedbackElement.textContent = 'Incorrect!';
+      feedbackElement.style.color = 'var(--error-color, #dc3545)';
+    }
   }
 
   render() {
-    const { question, options, selectedAnswer, correctAnswer } = this.props;
+    const { question, options, selectedAnswer } = this.props;
     this.shadowRoot.querySelector('.question').textContent = question;
 
     const optionsContainer = this.shadowRoot.querySelector('.options');
     optionsContainer.innerHTML = options.map((option, index) => {
       const isSelected = selectedAnswer === index ? 'selected' : '';
-      const isCorrect = selectedAnswer === index && index === correctAnswer ? 'correct' : '';
-      const isIncorrect = selectedAnswer === index && index !== correctAnswer ? 'incorrect' : '';
-      return `<button class="option ${isSelected} ${isCorrect} ${isIncorrect}" data-index="${index}" role="option" aria-selected="${isSelected === 'selected'}">
+      return `<button class="option ${isSelected}" data-index="${index}" role="option" aria-selected="${isSelected === 'selected'}">
                 ${option}
               </button>`;
     }).join('');
