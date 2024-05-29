@@ -8,6 +8,11 @@ export default class CounterBlock extends HTMLElement {
     this.props = {};
     this.shadowRoot.innerHTML = `
       <style>
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
         .counter-block {
           display: flex;
           flex-direction: column;

@@ -7,6 +7,11 @@ export default class TextBlock extends HTMLElement {
     this.props = {};
     this.shadowRoot.innerHTML = `
       <style>
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
         .text-block {
           width: 100%;
           height: 100%;

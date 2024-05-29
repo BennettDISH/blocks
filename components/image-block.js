@@ -7,6 +7,11 @@ export default class ImageBlock extends HTMLElement {
     this.props = { src: '', alt: '' };
     this.shadowRoot.innerHTML = `
       <style>
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
         .image-block {
           width: 100%;
           height: 100%;

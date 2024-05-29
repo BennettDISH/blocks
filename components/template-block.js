@@ -7,6 +7,11 @@ export default class TemplateBlock extends HTMLElement {
       this.props = {};
       this.shadowRoot.innerHTML = `
         <style>
+          *,
+          *::before,
+          *::after {
+            box-sizing: border-box;
+          }
           .template-block {
             width: 100%;
             height: 100%;

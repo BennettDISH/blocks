@@ -7,6 +7,11 @@ export default class VideoBlock extends HTMLElement {
     this.props = {};
     this.shadowRoot.innerHTML = `
       <style>
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
         .video-block {
           width: 100%;
           height: 100%;

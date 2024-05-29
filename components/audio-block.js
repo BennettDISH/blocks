@@ -7,6 +7,11 @@ export default class AudioBlock extends HTMLElement {
     this.props = { src: '' };
     this.shadowRoot.innerHTML = `
       <style>
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
         .audio-block {
           width: 100%;
           height: 100%;

@@ -8,6 +8,11 @@ export default class McQuestion extends HTMLElement {
     this.eventListeners = []; // Track event listeners for cleanup
     this.shadowRoot.innerHTML = `
       <style>
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
         .mc-question {
           width: 100%;
           height: 100%;

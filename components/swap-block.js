@@ -8,6 +8,11 @@ export default class SwapBlock extends HTMLElement {
     this.eventListeners = []; // Track event listeners for cleanup
     this.shadowRoot.innerHTML = `
       <style>
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
         .swap-block {
           width: 100%;
           height: 100%;
