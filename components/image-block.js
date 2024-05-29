@@ -14,6 +14,7 @@ export default class ImageBlock extends HTMLElement {
           display: flex;
           justify-content: center;
           align-items: center;
+          pointer-events: none;
         }
         img {
           max-width: 100%;
