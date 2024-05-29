@@ -4,7 +4,7 @@ export default class IntroBlock extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.props = { content: '', buttonLabel: 'Start' };
+    this.props = {};
     this.shadowRoot.innerHTML = `
       <style>
         .intro-block {
