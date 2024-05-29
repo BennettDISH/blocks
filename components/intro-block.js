@@ -22,7 +22,7 @@ export default class IntroBlock extends HTMLElement {
         }
         .hidden {
           opacity: 0;
-          visibility: hidden;
+          display: none;
         }
         button {
           padding: var(--button-padding, 10px 20px);
