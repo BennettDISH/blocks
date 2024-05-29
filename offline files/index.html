@@ -10,6 +10,9 @@
   <h1>Using Custom Web Components</h1>
   
   <div class="components-container">
+    <div class="component-item" id="intro-block-container">
+      <intro-block></intro-block>
+    </div>
     <div class="component-item" id="text-block-container">
       <text-block></text-block>
     </div>
@@ -33,6 +36,7 @@
     </div>
   </div>
 
+  <script src="https://bennettDISH.github.io/components/intro-block.js" type="module"></script>
   <script src="https://bennettDISH.github.io/components/text-block.js" type="module"></script>
   <script src="https://bennettDISH.github.io/components/video-block.js" type="module"></script>
   <script src="https://bennettDISH.github.io/components/swap-block.js" type="module"></script>
@@ -43,6 +47,9 @@
 
   <script>
     function loadContent() {
+      const introBlock = document.querySelector('intro-block');
+      introBlock.data = { content: '<h2>Welcome to the Site</h2><p>This is the intro block. Click Start to proceed.</p>', buttonLabel: 'Start' };
+
       const textBlock = document.querySelector('text-block');
       textBlock.data = { content: '<p>Hello from another site!</p>' };
 
@@ -67,6 +74,7 @@
 
     // Initial load
     Promise.all([
+      customElements.whenDefined('intro-block'),
       customElements.whenDefined('text-block'),
       customElements.whenDefined('video-block'),
       customElements.whenDefined('swap-block'),
