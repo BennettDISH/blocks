@@ -12,9 +12,6 @@ export default class IntroBlock extends HTMLElement {
         *::after {
           box-sizing: border-box;
         }
-        :host(intro-block) {
-          pointer-events: none;
-        }
         .intro-block {
           width: 100%;
           height: 100%;
@@ -31,6 +28,9 @@ export default class IntroBlock extends HTMLElement {
         .hidden {
           opacity: 0;
           display: none;
+          :host(intro-block) {
+            pointer-events: none;
+          }
         }
         button {
           padding: var(--button-padding, 10px 20px);
