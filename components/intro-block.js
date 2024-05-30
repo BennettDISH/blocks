@@ -13,7 +13,7 @@ export default class IntroBlock extends HTMLElement {
           box-sizing: border-box;
         }
         :host(intro-block) {
-          pointer-event: none;
+          pointer-events: none;
         }
         .intro-block {
           width: 100%;
