@@ -12,6 +12,9 @@ export default class IntroBlock extends HTMLElement {
         *::after {
           box-sizing: border-box;
         }
+        :host(intro-block) {
+          color: red;
+        }
         .intro-block {
           width: 100%;
           height: 100%;
