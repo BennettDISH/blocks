@@ -42,16 +42,16 @@
     </div>
   </div>
 
-  <script src="https://bennettDISH.github.io/components/intro-block.js"></script>
-  <script src="https://bennettDISH.github.io/components/text-block.js"></script>
-  <script src="https://bennettDISH.github.io/components/video-block.js"></script>
-  <script src="https://bennettDISH.github.io/components/swap-block.js"></script>
-  <script src="https://bennettDISH.github.io/components/mc-question.js"></script>
-  <script src="https://bennettDISH.github.io/components/counter-block.js"></script>
-  <script src="https://bennettDISH.github.io/components/image-block.js"></script>
-  <script src="https://bennettDISH.github.io/components/audio-block.js"></script>
-  <script src="https://bennettDISH.github.io/components/swap-buttons-block.js"></script>
-  <script src="https://bennettDISH.github.io/components/swap-text-block.js"></script>
+  <script src="https://bennettDISH.github.io/components/intro-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/text-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/video-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/swap-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/mc-question.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/counter-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/image-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/audio-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/swap-buttons-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/swap-text-block.js" type="module"></script>
 
   <script>
     function loadContent() {
@@ -81,19 +81,15 @@
 
       const swapButtonsBlock = document.querySelector('swap-buttons-block');
       swapButtonsBlock.data = {
-        buttons: [
-          { label: 'Button 1', guid: 'guid-1' },
-          { label: 'Button 2', guid: 'guid-2' },
-          { label: 'Button 3', guid: 'guid-3' }
-        ]
+        buttons: ['Text 1', 'Text 2', 'Text 3']
       };
 
       const swapTextBlock = document.querySelector('swap-text-block');
       swapTextBlock.data = {
         textBlocks: [
-          { guid: 'guid-1', content: '<p>This is the content for Button 1.</p>' },
-          { guid: 'guid-2', content: '<p>This is the content for Button 2.</p>' },
-          { guid: 'guid-3', content: '<p>This is the content for Button 3.</p>' }
+          { text: 'Text 1', content: '<p>This is the content for Text 1.</p>' },
+          { text: 'Text 2', content: '<p>This is the content for Text 2.</p>' },
+          { text: 'Text 3', content: '<p>This is the content for Text 3.</p>' }
         ]
       };
     }

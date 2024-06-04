@@ -38,20 +38,20 @@
       const container = this.shadowRoot.querySelector('.swap-buttons-block');
       container.innerHTML = '';
 
-      this.state.buttons.forEach(buttonData => {
+      this.state.buttons.forEach(buttonText => {
         const button = document.createElement('button');
-        button.textContent = buttonData.label;
-        button.addEventListener('click', () => this.handleButtonClick(buttonData.guid));
+        button.textContent = buttonText;
+        button.addEventListener('click', () => this.handleButtonClick(buttonText));
         container.appendChild(button);
       });
     }
 
-    handleButtonClick(guid) {
-      this.trackData(guid);
+    handleButtonClick(text) {
+      this.trackData(text);
     }
 
-    trackData(guid) {
-      window.datatracking?.setCustomData({ selectedGuid: guid });
+    trackData(text) {
+      window.datatracking?.setCustomData({ selectedText: text });
     }
   }
 
