@@ -25,13 +25,6 @@ export default class IntroBlock extends HTMLElement {
           font-family: var(--font-family, 'Roboto', sans-serif);
           transition: opacity 0.5s ease-out;
         }
-        .hidden {
-          opacity: 0;
-          display: none;
-          :host(intro-block) {
-            pointer-events: none;
-          }
-        }
         button {
           padding: var(--button-padding, 10px 20px);
           margin-top: var(--button-margin, 10px);
@@ -64,11 +57,10 @@ export default class IntroBlock extends HTMLElement {
   }
 
   hideIntroBlock = () => {
-    const introBlock = this.shadowRoot.querySelector('.intro-block');
-    introBlock.classList.add('hidden');
-    setTimeout(() => {
-      introBlock.style.display = 'none';
-    }, 500); // Match the transition duration
+    const introBlock = this.shadowRoot.closest('intro-block');
+      setTimeout(() => {
+      introBlock.style.pointerEvents = 'none';
+    }, 500);
   }
 
   render() {
