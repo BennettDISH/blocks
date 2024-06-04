@@ -36,22 +36,22 @@
     }
 
     handleDataTrackingEvent(event) {
-      if (event.detail && event.detail.customData && typeof event.detail.customData.selectedIndex !== 'undefined') {
-        this.render(event.detail.customData.selectedIndex);
+      if (event.detail && event.detail.customData && typeof event.detail.customData.selectedGuid !== 'undefined') {
+        this.render(event.detail.customData.selectedGuid);
       }
     }
 
-    render(activeIndex = null) {
+    render(activeGuid = null) {
       const container = this.shadowRoot.querySelector('.swap-text-blocks');
       container.innerHTML = '';
 
-      this.state.textBlocks.forEach((htmlContent, index) => {
+      this.state.textBlocks.forEach(block => {
         const div = document.createElement('div');
         div.classList.add('swap-text-block');
-        if (index === activeIndex) {
+        if (block.guid === activeGuid) {
           div.classList.add('active');
         }
-        div.innerHTML = htmlContent;
+        div.innerHTML = block.content;
         container.appendChild(div);
       });
     }
