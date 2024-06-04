@@ -34,6 +34,12 @@
     <div class="component-item" id="audio-block-container">
       <audio-block></audio-block>
     </div>
+    <div class="component-item" id="swap-buttons-block-container">
+      <swap-buttons-block></swap-buttons-block>
+    </div>
+    <div class="component-item" id="swap-text-block-container">
+      <swap-text-block></swap-text-block>
+    </div>
   </div>
 
   <script src="https://bennettDISH.github.io/components/intro-block.js" type="module"></script>
@@ -44,6 +50,8 @@
   <script src="https://bennettDISH.github.io/components/counter-block.js" type="module"></script>
   <script src="https://bennettDISH.github.io/components/image-block.js" type="module"></script>
   <script src="https://bennettDISH.github.io/components/audio-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/swap-buttons-block.js" type="module"></script>
+  <script src="https://bennettDISH.github.io/components/swap-text-block.js" type="module"></script>
 
   <script>
     function loadContent() {
@@ -70,6 +78,16 @@
 
       const audioBlock = document.querySelector('audio-block');
       audioBlock.data = { src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' };
+
+      const swapButtonsBlock = document.querySelector('swap-buttons-block');
+      swapButtonsBlock.data = { buttons: ['Button 1', 'Button 2', 'Button 3'] };
+
+      const swapTextBlock = document.querySelector('swap-text-block');
+      swapTextBlock.data = { textBlocks: [
+        '<p>This is the content for Button 1.</p>',
+        '<p>This is the content for Button 2.</p>',
+        '<p>This is the content for Button 3.</p>'
+      ] };
     }
 
     // Initial load
@@ -81,9 +99,15 @@
       customElements.whenDefined('mc-question'),
       customElements.whenDefined('counter-block'),
       customElements.whenDefined('image-block'),
-      customElements.whenDefined('audio-block')
+      customElements.whenDefined('audio-block'),
+      customElements.whenDefined('swap-buttons-block'),
+      customElements.whenDefined('swap-text-block')
     ]).then(() => {
       loadContent();
+    });
+
+    window.addEventListener('datatracking', (event) => {
+      console.log('Data tracking changed:', event.detail);
     });
 
     const datatracking = {
