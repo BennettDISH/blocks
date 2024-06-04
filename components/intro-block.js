@@ -61,14 +61,15 @@ export default class IntroBlock extends HTMLElement {
 
     const getRootNodee = introBlock.getRootNode()
 
-    const parent = getRootNodee.closest('intro-block');
+    const parent = introBlock.closest('intro-block');
 
     console.log('introBlock', introBlock)
     console.log('parent', parent)
     console.log('getRootNodee', getRootNodee)
 
       setTimeout(() => {
-        parent.style.pointerEvents = 'none';
+        getRootNodee.style.pointerEvents = 'none';
+        getRootNodee.style.display = 'none';
     }, 500);
   }
 
