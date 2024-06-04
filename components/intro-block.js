@@ -61,7 +61,7 @@ export default class IntroBlock extends HTMLElement {
 
     const getRootNodee = introBlock.getRootNode()
 
-    const parent = introBlock.closest('intro-block');
+    const parent = getRootNodee.closest('intro-block');
 
     console.log('introBlock', introBlock)
     console.log('parent', parent)
