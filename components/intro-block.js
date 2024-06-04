@@ -59,16 +59,16 @@ export default class IntroBlock extends HTMLElement {
   hideIntroBlock = () => {
     const introBlock = this.shadowRoot.querySelector('.intro-block');
 
-    const asdf = introBlock.getRootNode()
+    const getRootNodee = introBlock.getRootNode()
 
-    const parent = asdf.closest('intro-block');
+    const parent = introBlock.closest('intro-block');
 
     console.log('introBlock', introBlock)
     console.log('parent', parent)
     console.log('getRootNodee', getRootNodee)
 
       setTimeout(() => {
-        asdf.style.pointerEvents = 'none';
+        parent.style.pointerEvents = 'none';
     }, 500);
   }
 
