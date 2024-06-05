@@ -38,28 +38,26 @@
       const container = this.shadowRoot.querySelector('.swap-buttons-block');
       container.innerHTML = '';
 
-      console.log("button block props -BD", this.props)
-
-      this.props.buttons.forEach(buttonData => {
-        const button = document.createElement('button');
-        button.textContent = buttonData.label;
-        button.addEventListener('click', () => this.handleButtonClick(this.props.guid));
-        container.appendChild(button);
-      });
+      if (this.props.buttons) {
+        this.props.buttons.forEach((buttonText, index) => {
+          const button = document.createElement('button');
+          button.textContent = buttonText;
+          button.addEventListener('click', () => this.handleButtonClick(index));
+          container.appendChild(button);
+        });
+      }
     }
 
-    handleButtonClick(guid) {
-      this.trackData(guid);
-      console.log('datatracking -bd', window.datatracking)
+    handleButtonClick(index) {
+      this.trackData(this.props.guid, index);
+      console.log('datatracking -bd', window.datatracking);
     }
 
-    trackData(guid) {
-      const buttonGuids = this.props.buttons.map(button => ({
-        guid: guid,
-        selected: button.guid === guid
-      }));
-
-      window.datatracking?.setCustomData({ buttonGuids });
+    trackData(guid, index) {
+      const customData = { [guid]: index };
+      if (window.datatracking && typeof window.datatracking.setCustomData === 'function') {
+        window.datatracking.setCustomData(customData);
+      }
     }
   }
 

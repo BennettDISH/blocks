@@ -3,7 +3,7 @@
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
-      this.state = { textBlocks: [] };
+      this.props = {};
       this.shadowRoot.innerHTML = `
         <style>
           .swap-text-block {
@@ -18,12 +18,12 @@
     }
 
     set data(value) {
-      this.state = value;
+      this.props = value;
       this.render();
     }
 
     get data() {
-      return this.state;
+      return this.props;
     }
 
     connectedCallback() {
@@ -36,22 +36,23 @@
     }
 
     handleDataTrackingEvent(event) {
-      if (event.detail && event.detail.customData && typeof event.detail.customData.selectedText !== 'undefined') {
-        this.render(event.detail.customData.selectedText);
+      const customData = event.detail?.customData;
+      if (customData && typeof customData[this.props.guid] !== 'undefined') {
+        this.render(customData[this.props.guid]);
       }
     }
 
-    render(activeText = null) {
+    render(activeIndex = null) {
       const container = this.shadowRoot.querySelector('.swap-text-blocks');
       container.innerHTML = '';
 
-      this.state.textBlocks.forEach(block => {
+      this.props.textBlocks.forEach((block, index) => {
         const div = document.createElement('div');
         div.classList.add('swap-text-block');
-        if (block.text === activeText) {
+        if (index === activeIndex) {
           div.classList.add('active');
         }
-        div.innerHTML = block.content;
+        div.innerHTML = block;
         container.appendChild(div);
       });
     }
