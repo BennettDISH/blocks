@@ -36,7 +36,7 @@
     }
 
     handleDataTrackingEvent(event) {
-      const customData = event.detail?.customData;
+      const customData = event.detail?.data?.courseData?.customData;
       if (customData && typeof customData[this.props.guid] !== 'undefined') {
         this.render(customData[this.props.guid]);
       }
