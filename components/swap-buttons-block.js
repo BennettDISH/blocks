@@ -38,11 +38,12 @@
       const container = this.shadowRoot.querySelector('.swap-buttons-block');
       container.innerHTML = '';
 
+      console.log("button block props -BD", this.props)
+
       this.props.buttons.forEach(buttonData => {
         const button = document.createElement('button');
         button.textContent = buttonData.label;
-        button.guid = buttonData.guid;
-        button.addEventListener('click', () => this.handleButtonClick(buttonData.guid));
+        button.addEventListener('click', () => this.handleButtonClick(this.props.guid));
         container.appendChild(button);
       });
     }
@@ -54,7 +55,7 @@
 
     trackData(guid) {
       const buttonGuids = this.props.buttons.map(button => ({
-        guid: button.guid,
+        guid: guid,
         selected: button.guid === guid
       }));
 
