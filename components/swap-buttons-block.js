@@ -56,8 +56,7 @@
     trackData(guid, index) {
       const customData = { [guid]: index };
       if (window.datatracking && typeof window.datatracking.setCustomData === 'function') {
-        const currentData = window.datatracking.customData || {};
-        window.datatracking.setCustomData({ data: { courseData: { customData: { ...currentData, ...customData } } } });
+        window.datatracking.setCustomData(customData);
       }
     }
   }

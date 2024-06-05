@@ -3,7 +3,7 @@
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
-      this.props = {};
+      this.props = { guid: '', textBlocks: [] };
       this.shadowRoot.innerHTML = `
         <style>
           .swap-text-block {
@@ -36,7 +36,7 @@
     }
 
     handleDataTrackingEvent(event) {
-      const customData = event.detail?.data?.courseData?.customData;
+      const customData = event.detail?.customData;
       if (customData && typeof customData[this.props.guid] !== 'undefined') {
         this.render(customData[this.props.guid]);
       }
