@@ -4,6 +4,7 @@
       super();
       this.attachShadow({ mode: 'open' });
       this.state = { buttons: [] };
+      this.props = {};
       this.shadowRoot.innerHTML = `
         <style>
           .swap-buttons-block {
@@ -38,20 +39,26 @@
       const container = this.shadowRoot.querySelector('.swap-buttons-block');
       container.innerHTML = '';
 
-      this.state.buttons.forEach(buttonText => {
+      this.state.buttons.forEach(buttonData => {
         const button = document.createElement('button');
-        button.textContent = buttonText;
-        button.addEventListener('click', () => this.handleButtonClick(buttonText));
+        button.textContent = buttonData.label;
+        button.guid = buttonData.guid;
+        button.addEventListener('click', () => this.handleButtonClick(buttonData.guid));
         container.appendChild(button);
       });
     }
 
-    handleButtonClick(text) {
-      this.trackData(text);
+    handleButtonClick(guid) {
+      this.trackData(guid);
     }
 
-    trackData(text) {
-      window.datatracking?.setCustomData({ selectedText: text });
+    trackData(guid) {
+      const buttonGuids = this.state.buttons.map(button => ({
+        guid: button.guid,
+        selected: button.guid === guid
+      }));
+
+      window.datatracking?.setCustomData({ buttonGuids });
     }
   }
 
