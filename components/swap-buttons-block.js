@@ -50,6 +50,7 @@
 
     handleButtonClick(guid) {
       this.trackData(guid);
+      console.log(window.datatracking)
     }
 
     trackData(guid) {
