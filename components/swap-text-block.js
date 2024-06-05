@@ -15,6 +15,11 @@
         </style>
         <div class="swap-text-blocks"></div>
       `;
+
+      // Listen for the custom event
+      window.addEventListener('datatrackingUpdated', () => {
+        this.render();
+      });
     }
 
     set data(value) {
@@ -29,7 +34,7 @@
     render(activeIndex = null) {
       const container = this.shadowRoot.querySelector('.swap-text-blocks');
       container.innerHTML = '';
-      console.log('linkedGuid', window.datatracking.data.customData[this.props.linkedGuid])
+      console.log('linkedGuid', window.datatracking.data.customData[this.props.linkedGuid]);
       
       this.props.textBlocks.forEach((block, index) => {
         const div = document.createElement('div');
