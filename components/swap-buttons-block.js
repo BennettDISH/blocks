@@ -3,7 +3,6 @@
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
-      this.state = { buttons: [] };
       this.props = {};
       this.shadowRoot.innerHTML = `
         <style>
@@ -23,12 +22,12 @@
     }
 
     set data(value) {
-      this.state = value;
+      this.props = value;
       this.render();
     }
 
     get data() {
-      return this.state;
+      return this.props;
     }
 
     connectedCallback() {
@@ -39,7 +38,7 @@
       const container = this.shadowRoot.querySelector('.swap-buttons-block');
       container.innerHTML = '';
 
-      this.state.buttons.forEach(buttonData => {
+      this.props.buttons.forEach(buttonData => {
         const button = document.createElement('button');
         button.textContent = buttonData.label;
         button.guid = buttonData.guid;
@@ -54,7 +53,7 @@
     }
 
     trackData(guid) {
-      const buttonGuids = this.state.buttons.map(button => ({
+      const buttonGuids = this.props.buttons.map(button => ({
         guid: button.guid,
         selected: button.guid === guid
       }));
