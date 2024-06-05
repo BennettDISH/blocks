@@ -20,21 +20,21 @@
     set data(value) {
       this.props = value;
       this.render();
-      console.log('getCustomData?', window.datatracking?.getCustomData())
     }
-
+    
     get data() {
       return this.props;
     }
-
+    
     render(activeIndex = null) {
       const container = this.shadowRoot.querySelector('.swap-text-blocks');
       container.innerHTML = '';
-
+      console.log('linkedGuid', window.datatracking.data.customData[this.props.linkedGuid])
+      
       this.props.textBlocks.forEach((block, index) => {
         const div = document.createElement('div');
         div.classList.add('swap-text-block');
-        if (index === activeIndex) {
+        if (index === window.datatracking.data.customData[this.props.linkedGuid]) {
           div.classList.add('active');
         }
         div.innerHTML = block;
