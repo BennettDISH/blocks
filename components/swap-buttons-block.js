@@ -51,6 +51,14 @@
     handleButtonClick(index) {
       this.trackData(this.props.guid, index);
       console.log('datatracking -bd', window.datatracking);
+
+      // Dispatch custom event to notify SwapTextBlock
+      const event = new CustomEvent('swap-update', {
+        detail: { linkedGuid: this.props.guid, activeIndex: index },
+        bubbles: true,
+        composed: true
+      });
+      this.dispatchEvent(event);
     }
 
     trackData(guid, index) {

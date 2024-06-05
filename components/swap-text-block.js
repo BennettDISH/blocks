@@ -15,11 +15,6 @@
         </style>
         <div class="swap-text-blocks"></div>
       `;
-
-      // Listen for the custom event
-      window.addEventListener('datatrackingUpdated', () => {
-        this.render();
-      });
     }
 
     set data(value) {
@@ -31,15 +26,30 @@
       return this.props;
     }
     
+    connectedCallback() {
+      this.render();
+      window.addEventListener('swap-update', this.handleSwapUpdate.bind(this));
+    }
+    
+    disconnectedCallback() {
+      window.removeEventListener('swap-update', this.handleSwapUpdate.bind(this));
+    }
+
+    handleSwapUpdate(event) {
+      const { linkedGuid, activeIndex } = event.detail;
+      if (this.props.linkedGuid === linkedGuid) {
+        this.render(activeIndex);
+      }
+    }
+    
     render(activeIndex = null) {
       const container = this.shadowRoot.querySelector('.swap-text-blocks');
       container.innerHTML = '';
-      console.log('linkedGuid', window.datatracking.data.customData[this.props.linkedGuid]);
-      
+
       this.props.textBlocks.forEach((block, index) => {
         const div = document.createElement('div');
         div.classList.add('swap-text-block');
-        if (index === window.datatracking.data.customData[this.props.linkedGuid]) {
+        if (index === activeIndex || index === window.datatracking.data.customData[this.props.linkedGuid]) {
           div.classList.add('active');
         }
         div.innerHTML = block;
