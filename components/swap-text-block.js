@@ -29,15 +29,19 @@
     connectedCallback() {
       this.render();
       window.addEventListener('swap-update', this.handleSwapUpdate.bind(this));
+      console.log('SwapTextBlock connected, listening for swap-update events');
     }
     
     disconnectedCallback() {
       window.removeEventListener('swap-update', this.handleSwapUpdate.bind(this));
+      console.log('SwapTextBlock disconnected, stopped listening for swap-update events');
     }
 
     handleSwapUpdate(event) {
       const { linkedGuid, activeIndex } = event.detail;
+      console.log('Received swap-update event:', event.detail);
       if (this.props.linkedGuid === linkedGuid) {
+        console.log('Updating SwapTextBlock with activeIndex:', activeIndex);
         this.render(activeIndex);
       }
     }
@@ -45,6 +49,8 @@
     render(activeIndex = null) {
       const container = this.shadowRoot.querySelector('.swap-text-blocks');
       container.innerHTML = '';
+      console.log('Rendering SwapTextBlock with activeIndex:', activeIndex);
+      console.log('linkedGuid data:', window.datatracking.data.customData[this.props.linkedGuid]);
 
       this.props.textBlocks.forEach((block, index) => {
         const div = document.createElement('div');
