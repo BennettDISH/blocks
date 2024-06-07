@@ -8,9 +8,14 @@
         <style>
           .swap-text-block {
             display: none;
+            padding: var(--swap-block-padding);
+            margin: var(--swap-block-margin);
+            border-radius: var(--swap-block-border-radius);
+            background-color: var(--swap-block-inactive-color);
           }
           .swap-text-block.active {
             display: block;
+            background-color: var(--swap-block-active-color);
           }
         </style>
         <div class="swap-text-blocks"></div>

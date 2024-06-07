@@ -1,5 +1,3 @@
-// /components/mc-question.js
-
 export default class McQuestion extends HTMLElement {
   constructor() {
     super();
@@ -20,40 +18,42 @@ export default class McQuestion extends HTMLElement {
         }
         .question {
           font-weight: bold;
-          font-family: var(--font-family, 'Roboto', sans-serif);
+          font-family: var(--mc-question-font-family, 'Roboto', sans-serif);
+          color: var(--mc-question-font-color, #000);
         }
         .option {
           display: block;
-          margin: 5px 0;
-          padding: 10px;
-          border: 1px solid #ddd;
-          border-radius: var(--border-radius, 4px);
-          background-color: var(--secondary-color, #fff);
+          margin: var(--mc-option-margin, 5px 0);
+          padding: var(--mc-option-padding, 10px);
+          border: 1px solid var(--mc-option-border-color, #ddd);
+          border-radius: var(--mc-option-border-radius, 4px);
+          background-color: var(--mc-option-background-color, #fff);
           cursor: pointer;
         }
         .option.selected {
-          border-color: var(--accent-color, #007bff);
+          border-color: var(--mc-option-selected-border-color, #007bff);
         }
         .option.correct {
-          border-color: var(--success-color, #28a745);
-          background-color: #d4edda;
+          border-color: var(--mc-option-correct-border-color, #28a745);
+          background-color: var(--mc-option-correct-background-color, #d4edda);
         }
         .option.incorrect {
-          border-color: var(--error-color, #dc3545);
-          background-color: #f8d7da;
+          border-color: var(--mc-option-incorrect-border-color, #dc3545);
+          background-color: var(--mc-option-incorrect-background-color, #f8d7da);
         }
         .feedback {
-          margin-top: 10px;
-          font-family: var(--font-family, 'Roboto', sans-serif);
+          margin-top: var(--mc-feedback-margin, 10px);
+          font-family: var(--mc-feedback-font-family, 'Roboto', sans-serif);
+          color: var(--mc-feedback-font-color, #000);
         }
         button.submit-button {
-          margin-top: 10px;
+          margin-top: var(--button-margin, 10px);
           padding: var(--button-padding, 10px 20px);
           cursor: pointer;
-          background-color: var(--accent-color, #007bff);
-          color: #fff;
+          background-color: var(--button-background-color, #007bff);
+          color: var(--button-font-color, #fff);
           border: none;
-          border-radius: var(--border-radius, 4px);
+          border-radius: var(--button-border-radius, 4px);
         }
       </style>
       <div class="mc-question" role="region" aria-label="Multiple Choice Question">

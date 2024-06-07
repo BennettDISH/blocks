@@ -1,5 +1,3 @@
-// /components/video-block.js
-
 export default class VideoBlock extends HTMLElement {
   constructor() {
     super();
@@ -16,11 +14,14 @@ export default class VideoBlock extends HTMLElement {
           width: 100%;
           height: 100%;
           box-sizing: border-box;
+          padding: var(--video-block-padding, 10px);
+          background-color: var(--video-block-background-color, #000);
         }
         video {
           width: 100%;
           height: 100%;
           object-fit: var(--video-object-fit, cover);
+          border-radius: var(--video-border-radius, 4px);
         }
       </style>
       <div class="video-block">

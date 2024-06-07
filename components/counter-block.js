@@ -1,5 +1,3 @@
-// /components/counter-block.js
-
 export default class CounterBlock extends HTMLElement {
   constructor() {
     super();
@@ -17,11 +15,22 @@ export default class CounterBlock extends HTMLElement {
           display: flex;
           flex-direction: column;
           align-items: center;
+          background-color: var(--counter-block-background-color, #fff);
+          padding: var(--counter-block-padding, 10px);
+          border-radius: var(--counter-block-border-radius, 4px);
         }
         button {
           padding: var(--button-padding, 10px 20px);
           margin-top: var(--button-margin, 10px);
           cursor: pointer;
+          background-color: var(--button-background-color, #007bff);
+          color: var(--button-font-color, #fff);
+          border: none;
+          border-radius: var(--button-border-radius, 4px);
+        }
+        #count-display {
+          font-size: var(--counter-font-size, 1.2rem);
+          color: var(--counter-font-color, #333);
         }
       </style>
       <div class="counter-block" role="region" aria-label="Counter Block">

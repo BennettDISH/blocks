@@ -10,11 +10,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: var(--swap-buttons-block-padding, 10px);
+            background-color: var(--swap-buttons-block-background-color, #fff);
           }
           button {
-            margin: 5px;
-            padding: 10px 20px;
+            margin: var(--button-margin, 5px);
+            padding: var(--button-padding, 10px 20px);
             cursor: pointer;
+            background-color: var(--button-background-color, #007bff);
+            color: var(--button-font-color, #fff);
+            border: none;
+            border-radius: var(--button-border-radius, 4px);
           }
         </style>
         <div class="swap-buttons-block"></div>

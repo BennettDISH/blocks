@@ -1,5 +1,3 @@
-// /components/intro-block.js
-
 export default class IntroBlock extends HTMLElement {
   constructor() {
     super();
@@ -19,20 +17,20 @@ export default class IntroBlock extends HTMLElement {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background-color: var(--secondary-color, #fff);
-          color: var(--primary-color, #000);
-          padding: var(--padding, 20px);
-          font-family: var(--font-family, 'Roboto', sans-serif);
+          background-color: var(--intro-block-background-color, #fff);
+          color: var(--intro-block-font-color, #000);
+          padding: var(--intro-block-padding, 20px);
+          font-family: var(--intro-block-font-family, 'Roboto', sans-serif);
           transition: opacity 0.5s ease-out;
         }
         button {
           padding: var(--button-padding, 10px 20px);
           margin-top: var(--button-margin, 10px);
           cursor: pointer;
-          background-color: var(--accent-color, #007bff);
-          color: #fff;
+          background-color: var(--button-background-color, #007bff);
+          color: var(--button-font-color, #fff);
           border: none;
-          border-radius: var(--border-radius, 4px);
+          border-radius: var(--button-border-radius, 4px);
         }
       </style>
       <div class="intro-block">
@@ -59,14 +57,12 @@ export default class IntroBlock extends HTMLElement {
   hideIntroBlock = () => {
     const introBlock = this.shadowRoot.querySelector('.intro-block');
     const parent = this.parentNode;
-  
+
     setTimeout(() => {
       parent.style.pointerEvents = 'none';
       parent.style.display = 'none';
     }, 500);
   }
-  
-  
 
   render() {
     const contentElement = this.shadowRoot.querySelector('.content');

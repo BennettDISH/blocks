@@ -1,5 +1,3 @@
-// /components/audio-block.js
-
 export default class AudioBlock extends HTMLElement {
   constructor() {
     super();
@@ -13,12 +11,13 @@ export default class AudioBlock extends HTMLElement {
           box-sizing: border-box;
         }
         .audio-block {
-          width: 100%;
-          height: 100%;
-          box-sizing: border-box;
+          width: var(--audio-block-width, 100%);
+          height: var(--audio-block-height, 100%);
           display: flex;
           justify-content: center;
           align-items: center;
+          background-color: var(--audio-block-background-color, #fff);
+          padding: var(--audio-block-padding, 10px);
         }
         audio {
           width: 100%;
