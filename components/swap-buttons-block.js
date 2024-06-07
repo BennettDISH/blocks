@@ -56,8 +56,6 @@
 
     handleButtonClick(index) {
       this.trackData(this.props.guid, index);
-      console.log('Button clicked:', index);
-      console.log('Data tracking:', window.datatracking);
 
       // Dispatch custom event to notify SwapTextBlock
       const event = new CustomEvent('swap-update', {
@@ -65,7 +63,6 @@
         bubbles: true,
         composed: true
       });
-      console.log('Dispatching swap-update event:', event);
       this.dispatchEvent(event);
     }
 
